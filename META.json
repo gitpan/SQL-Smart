@@ -1,5 +1,5 @@
 {
-   "abstract" : "The great new SQL::Smart!",
+   "abstract" : "A new smart way to do SQL query",
    "author" : [
       "Priezt <vegetabird@gmail.com>"
    ],
@@ -37,5 +37,5 @@
       }
    },
    "release_status" : "stable",
-   "version" : "0.01"
+   "version" : "0.02"
 }

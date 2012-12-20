@@ -11,7 +11,7 @@ our $dbh_cache;
 
 =head1 NAME
 
-SQL::Smart - The great new SQL::Smart!
+SQL::Smart - A new smart way to do SQL query
 
 =head1 VERSION
 
@@ -19,19 +19,26 @@ Version 0.01
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
+This module simply export two functions. Use "for_dbh()" to aim following queries to a $dbh. Then use "sql()" to handle of CRUD queries. The function will determine return value form (scalar/hashref/array) based on your query string and actual DB query results.
 
 Perhaps a little code snippet.
 
     use SQL::Smart;
+	use DBI;
+	
+	for_dbh(DBI->connect('DBI:mysql:dbname;host=hostname', 'username', 'password'));
 
-    my $foo = SQL::Smart->new();
-    ...
+    $name = sql('select name from users where id=?', $id); # $name = 'Tom'
+    @names = sql('select name from users'); # @names = ('Tom', 'Jerry'...)
+	$rh_user = sql('select * from users where id=?', $id); # $rh_user = {id=>1, name=>'Tom'}
+	@users = sql('select * from users'); # @users = ({id=>1, name=>'Tom'}, {id=>2, name=>'Jerry'}...)
+	sql('insert into users (name) values (?)', 'Mary');
+	sql('update users set name=? where id=?', $id);
 
 =head1 EXPORT
 
