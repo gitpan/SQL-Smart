@@ -19,12 +19,12 @@ Version 0.01
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 
 =head1 SYNOPSIS
 
-This module simply export two functions. Use "for_dbh()" to aim following queries to a $dbh. Then use "sql()" to handle of CRUD queries. The function will determine return value form (scalar/hashref/array) based on your query string and actual DB query results.
+This module simply export two functions. Use "for_dbh()" to aim following queries to a $dbh. Then use "sql()" to handle of CRUD queries. The function will determine return value form (scalar/hashref/array) based on your query string, caller context and actual DB query results.
 
 Perhaps a little code snippet.
 
