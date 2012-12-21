@@ -19,26 +19,23 @@ Version 0.01
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 
 =head1 SYNOPSIS
 
-This module simply export two functions. Use "for_dbh()" to aim following queries to a $dbh. Then use "sql()" to handle of CRUD queries. The function will determine return value form (scalar/hashref/array) based on your query string, caller context and actual DB query results.
-
-Perhaps a little code snippet.
-
     use SQL::Smart;
-	use DBI;
-	
+	use DBI;	
+
 	for_dbh(DBI->connect('DBI:mysql:dbname;host=hostname', 'username', 'password'));
 
     $name = sql('select name from users where id=?', $id); # $name = 'Tom'
     @names = sql('select name from users'); # @names = ('Tom', 'Jerry'...)
 	$rh_user = sql('select * from users where id=?', $id); # $rh_user = {id=>1, name=>'Tom'}
 	@users = sql('select * from users'); # @users = ({id=>1, name=>'Tom'}, {id=>2, name=>'Jerry'}...)
-	sql('insert into users (name) values (?)', 'Mary');
+	$last_insert_id = sql('insert into users (name) values (?)', 'Mary');
 	sql('update users set name=? where id=?', $id);
+	sql('delete from users where id=?', $id);
 
 =head1 EXPORT
 
