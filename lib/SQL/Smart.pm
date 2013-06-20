@@ -19,7 +19,7 @@ Version 0.01
 
 =cut
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 
 =head1 SYNOPSIS
@@ -80,7 +80,7 @@ sub sql{
 	my $sql_statement = shift;
 	my @binds = @_;
 	my $dbh = get_dbh();
-	unless($sql_statement =~ /^\s*select/i){
+	unless($sql_statement =~ /^\s*(?:select|describe)/i){
 		my $sth = $dbh->prepare($sql_statement);
 		$sth->execute(@binds);
 		#$dbh->commit();
